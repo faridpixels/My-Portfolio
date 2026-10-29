@@ -38,14 +38,19 @@ export function getContactFormWhatsAppUrl(formData: ContactFormData): string {
     '',
     `*Client Name:* ${formData.name.trim()}`,
     `*Email Address:* ${formData.email.trim()}`,
-    `*Service Needed:* ${formData.service}`,
   ];
+
+  if (formData.service && formData.service.trim()) {
+    lines.push(`*Service Needed:* ${formData.service.trim()}`);
+  }
 
   if (formData.budget && formData.budget.trim()) {
     lines.push(`*Estimated Budget:* ${formData.budget.trim()}`);
   }
 
-  lines.push('', '*Project Details:*', formData.description.trim());
+  if (formData.description && formData.description.trim()) {
+    lines.push('', '*Project Details:*', formData.description.trim());
+  }
   lines.push('', 'Looking forward to hearing from you!');
 
   return buildWhatsAppUrl(lines.join('\n'));

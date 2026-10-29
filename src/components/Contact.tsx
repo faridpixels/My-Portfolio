@@ -10,7 +10,6 @@ import {
   Info,
 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/contactInfo';
-import { SERVICES_DATA } from '../data/servicesData';
 import { ContactFormData } from '../types';
 import { getContactFormWhatsAppUrl, getGeneralIntroWhatsAppUrl } from '../utils/whatsapp';
 
@@ -18,7 +17,7 @@ export const Contact: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    service: SERVICES_DATA[0].title,
+    service: '',
     budget: '',
     description: '',
   });
@@ -76,12 +75,6 @@ export const Contact: React.FC = () => {
       newErrors.email = 'Please provide your email address.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = 'Please enter a valid email address.';
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = 'Please describe your project or design brief.';
-    } else if (formData.description.trim().length < 10) {
-      newErrors.description = 'Please provide a bit more detail (at least 10 characters).';
     }
 
     setErrors(newErrors);
@@ -297,65 +290,6 @@ export const Contact: React.FC = () => {
                   )}
                 </div>
 
-                {/* Service Needed & Budget Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="service" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                      Service Needed
-                    </label>
-                    <select
-                      id="service"
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-3 py-2.5 text-sm bg-white dark:bg-[#050914] border border-slate-300 dark:border-white/10 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#00CFFF] transition-all cursor-pointer"
-                    >
-                      {SERVICES_DATA.map((s) => (
-                        <option key={s.id} value={s.title}>
-                          {s.title}
-                        </option>
-                      ))}
-                      <option value="Other / Custom Project">Other / Custom Project</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="budget" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                      Estimated Budget (Optional)
-                    </label>
-                    <input
-                      id="budget"
-                      type="text"
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      placeholder="e.g. $150 or Flexible"
-                      className="w-full px-4 py-2.5 text-sm bg-white dark:bg-[#050914] border border-slate-300 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00CFFF] transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Project Description Field */}
-                <div>
-                  <label htmlFor="description" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                    Project Description <span className="text-red-500">*</span>
-                  </label>
-                  <textarea
-                    id="description"
-                    required
-                    rows={4}
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    placeholder="Briefly describe what you need designed or formatted, any reference styles, deadlines, and key goals..."
-                    className={`w-full px-4 py-2.5 text-sm bg-white dark:bg-[#050914] border rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#00CFFF] transition-all ${
-                      errors.description ? 'border-red-500' : 'border-slate-300 dark:border-white/10'
-                    }`}
-                  />
-                  {errors.description && (
-                    <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" />
-                      <span>{errors.description}</span>
-                    </p>
-                  )}
-                </div>
 
                 {/* Submit Action */}
                 <div className="pt-2">
