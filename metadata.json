@@ -1,0 +1,6 @@
+{
+  "name": "FaridPixelPro Portfolio",
+  "description": "Portfolio website for FaridPixelPro, showcasing graphic design, visual branding, and professional document services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

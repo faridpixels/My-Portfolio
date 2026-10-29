@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --color-midnight: #050914;
+    --color-navy: #071B3D;
+    --color-electric: #087BFF;
+    --color-cyan: #00CFFF;
+    --color-white: #FFFFFF;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom utility classes */
+.bg-midnight {
+  background-color: #050914;
+}
+
+.bg-navy-deep {
+  background-color: #071B3D;
+}
+
+.text-electric {
+  color: #087BFF;
+}
+
+.text-cyber-cyan {
+  color: #00CFFF;
+}
+
+.gradient-brand {
+  background: linear-gradient(135deg, #087BFF 0%, #00CFFF 100%);
+}
+
+.gradient-brand-subtle {
+  background: linear-gradient(135deg, rgba(8, 123, 255, 0.12) 0%, rgba(0, 207, 255, 0.08) 100%);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, #087BFF 0%, #00CFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gradient-brand {
+  border-image: linear-gradient(135deg, #087BFF, #00CFFF) 1;
+}
+
+.glow-cyan-sm {
+  box-shadow: 0 0 20px -5px rgba(0, 207, 255, 0.3);
+}
+
+.glow-electric-lg {
+  box-shadow: 0 10px 40px -10px rgba(8, 123, 255, 0.35);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
